@@ -1,3 +1,11 @@
+Antonio Gabriel Moraes Vieira, RA 24001919
+João Vitor Marques, RA 24002160
+Miguel Camilo, RA 24002076
+Milton Fernando Randoli de Sá, RA 24002120
+Wagner da Silva Gomes Junior, RA 24002152
+
+
+
 1. Introdução
  A Zanin Store é uma empresa do setor varejista que enfrenta desafios relacionados à gestão de seu estoque. A ausência de um controle automatizado resulta em dificuldades na organização de produtos, perda de vendas por falta de itens e excesso de mercadorias sem demanda.
 
