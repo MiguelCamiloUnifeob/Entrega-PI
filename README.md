@@ -28,5 +28,6 @@ Produtos: Armazena informações sobre os itens do estoque.
 Movimentacoes: Registra entradas e saídas de produtos.
 Usuarios: Gerencia os usuários do sistema e seus níveis de acesso.
 O banco de dados implementado oferece suporte confiável ao sistema de controle de estoque, garantindo consistência e segurança das informações. Com ele, a Zanin Store pode gerenciar seus produtos de forma eficiente e organizada.
-(o arquivo referente aos comandos SQL usados nesse projeto, se encontra nesse repositorio 
 
+
+OS ARQUIVOS REFERENTES A ESSE PROJETO, ESTÃO ANEXADOS NA PASTA "ANEXOS ENTREGA PI"
