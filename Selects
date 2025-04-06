@@ -1,0 +1,65 @@
+-- SELECT 1: Compras com clientes
+-- Mostra todas as compras feitas, o nome do cliente responsável e o valor total da compra.
+
+SELECT c.idVenda, c.dataVenda, c.valorCompra, cl.nome AS Cliente
+FROM compra c
+INNER JOIN cliente cl ON c.cliente_idCliente = cl.idCliente;
+
+-- SELECT 2: Produtos comprados por clientes
+-- Mostra os produtos comprados, quem comprou, a quantidade e o preço unitário.
+SELECT i.idVenda, cl.nome AS Cliente, p.nome AS Produto, i.quantidade, i.preçoUnidade
+FROM itemcompra i
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+INNER JOIN compra c ON i.compra_idCompra = c.idVenda
+INNER JOIN cliente cl ON c.cliente_idCliente = cl.idCliente;
+
+-- SELECT 3: Produtos com categorias
+-- Relaciona os produtos vendidos com suas categorias.
+SELECT p.nome AS Produto, cat.nome AS Categoria, i.quantidade, i.preçoUnidade
+FROM itemcompra i
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+INNER JOIN categoria cat ON p.categoria_idCategoria = cat.idCategoria;
+
+-- SELECT 4: Total gasto por cliente
+-- Mostra quanto cada cliente já gastou na loja.
+SELECT cl.nome AS Cliente, SUM(c.valorCompra) AS TotalGasto
+FROM compra c
+INNER JOIN cliente cl ON c.cliente_idCliente = cl.idCliente
+GROUP BY cl.nome
+ORDER BY TotalGasto DESC;
+
+-- SELECT 5: Detalhamento de compras
+-- Relatório completo com cliente, produtos, categorias e valor total da compra.
+SELECT c.idVenda, cl.nome AS Cliente, p.nome AS Produto, cat.nome AS Categoria, 
+       i.quantidade, i.preçoUnidade, c.valorCompra
+FROM compra c
+INNER JOIN cliente cl ON c.cliente_idCliente = cl.idCliente
+INNER JOIN itemcompra i ON c.idVenda = i.compra_idCompra
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+INNER JOIN categoria cat ON p.categoria_idCategoria = cat.idCategoria;
+
+-- SELECT 6: Categorias mais vendidas
+-- Agrupa as vendas por categoria e mostra a quantidade vendida por categoria.
+SELECT cat.nome AS Categoria, SUM(i.quantidade) AS QuantidadeVendida
+FROM itemcompra i
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+INNER JOIN categoria cat ON p.categoria_idCategoria = cat.idCategoria
+GROUP BY cat.nome
+ORDER BY QuantidadeVendida DESC;
+
+-- SELECT 7: Quem comprou um produto específico
+-- Mostra quem comprou um produto específico, como a Jaqueta Jeans.
+SELECT DISTINCT cl.nome AS Cliente
+FROM cliente cl
+INNER JOIN compra c ON cl.idCliente = c.cliente_idCliente
+INNER JOIN itemcompra i ON c.idVenda = i.compra_idCompra
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+WHERE p.nome LIKE '%Calça%';
+
+-- SELECT 8: Produtos mais vendidos
+-- Mostra os produtos mais vendidos em quantidade.
+SELECT p.nome AS Produto, SUM(i.quantidade) AS TotalVendido
+FROM itemcompra i
+INNER JOIN produtos p ON i.produtos_idProduto = p.idProduto
+GROUP BY p.nome
+ORDER BY TotalVendido DESC;
